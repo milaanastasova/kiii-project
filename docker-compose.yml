@@ -9,6 +9,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=mila
       - MONGO_INITDB_ROOT_PASSWORD=mila
+
   mongo-express:
     image: mongo-express
     container_name: mongo_express
@@ -18,5 +19,17 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=mila
       - ME_CONFIG_MONGODB_ADMINPASSWORD=mila
       - ME_CONFIG_MONGODB_SERVER=mongodb
+
+  music-store:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: music-store
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mila:mila@mongodb:27017/music-store-db?authSource=admin
 volumes:
   mongo: {}
