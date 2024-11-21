@@ -1,0 +1,43 @@
+<div th:fragment="body">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+            <img th:src="${album.image}" alt="Album Image" class="img-fluid mb-2" style="max-width: 150px; border-radius: 5px;">
+            <h1><span th:text="${album.title}"></span></h1>
+        </div>
+        <div>
+            <a th:href="@{/album/{albumId}/addTrack(albumId=${album.id})}">
+                <button class="btn btn-primary">Add Track</button>
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+        <tr>
+            <th>#</th>
+            <th>Track Title</th>
+            <th>Duration</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="track, iterStat : ${tracks}">
+            <tr>
+                <td th:text="${iterStat.count}"></td> <!-- Serial number -->
+                <td th:text="${track.title}"></td>
+                <td>
+                    <span th:text="${track.minutes}"></span>:<span th:text="${track.seconds}"></span>
+                </td>
+                <td>
+                    <a th:href="@{/album/editTrack/{trackId}(trackId=${track.id})}" class="me-2">
+                        <button class="btn btn-info btn-sm">Edit</button>
+                    </a>
+                    <a th:href="@{/album/{albumId}/tracks/{trackId}/delete(albumId=${album.id}, trackId=${track.id})}">
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>

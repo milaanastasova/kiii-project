@@ -1,0 +1,30 @@
+<div th:fragment="body">
+
+  <div class="d-flex justify-content-between">
+    <h1>Albums</h1>
+    <a href="/add-album">
+      <button class="btn btn-primary" type="button">Add Album</button>
+    </a>
+  </div>
+
+  <ul class="list-unstyled d-flex flex-wrap justify-content-center">
+    <li th:each="album : ${albums}" class="m-4 d-flex flex-column align-items-center text-center">
+      <img class="album-cover" th:src="${album.image}" alt="Artist Image">
+      <h4 th:text="${album.title}">Album Title</h4>
+      <div th:text="${album.artist.name}">Artist</div>
+      <div>
+        <a th:href="@{/edit-album/{id}(id=${album.id})}">
+          <button class="btn btn-info" type="button">Edit</button>
+        </a>
+        <a th:href="@{/album/{id}/tracks(id=${album.id})}">
+          <button class="btn btn-dark">Tracks</button>
+        </a>
+        <a th:href="@{/delete-album/{id}(id=${album.id})}"
+           onclick="return confirm('Are you sure you want to delete this album?')">
+          <button class="btn btn-danger" type="button">Delete</button>
+        </a>
+      </div>
+    </li>
+  </ul>
+
+</div>

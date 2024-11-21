@@ -1,0 +1,33 @@
+<div th:fragment="body">
+    <h1 th:text="${albumId == null ? 'Add Album' : 'Edit Album'}"></h1>
+    <form th:action="@{${albumId == null ? '/add-album' : '/edit-album/' + albumId}}" th:object="${albumDto}" method="post">
+
+        <div class="m-2">
+            <label class="display: block" for="title">Album Title:</label>
+            <input type="text" th:field="*{title}" id="title" required>
+        </div>
+
+        <div class="m-2">
+            <label class="display: block" for="image">Album Image URL:</label>
+            <input type="text" th:field="*{image}" id="image" required>
+        </div>
+
+        <div class="m-2">
+            <label class="display: block" for="artist">Artist:</label>
+            <select th:field="*{artistId}" id="artist" required>
+                <option value="" th:text="'Select Artist'">Select Artist</option>
+                <option th:each="artist : ${artists}"
+                        th:value="${artist.id}"
+                        th:text="${artist.name}">Artist</option>
+            </select>
+        </div>
+
+        <div class="d-flex">
+            <a href="/albums">Back to Albums</a>
+            <button class="btn btn-primary mx-2" type="submit" th:text="${albumId == null ? 'Add Album' : 'Save Changes'}">
+                Save Album
+            </button>
+        </div>
+    </form>
+
+</div>

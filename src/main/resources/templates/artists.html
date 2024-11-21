@@ -1,0 +1,33 @@
+<div th:fragment="body" class="mt-4">
+    <style>
+
+    </style>
+
+    <!-- Title and Add Artist Button -->
+    <div class="d-flex justify-content-between align-items-end mb-3">
+        <h1>Artists</h1>
+        <a th:href="@{/add-artist}">
+            <button class="btn btn-primary" type="button">Add Artist</button>
+        </a>
+    </div>
+
+    <!-- Artists List -->
+    <ul class="list-unstyled d-flex flex-wrap justify-content-center">
+        <li th:each="artist : ${artists}" class="m-4 d-flex flex-column align-items-center text-center">
+            <img th:src="${artist.image}" alt="Artist Image" class="rounded mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+
+            <h4 th:text="${artist.name}" class="mb-2">Artist Name</h4>
+
+            <div>
+                <a th:href="@{/edit-artist/{id}(id=${artist.id})}" class="me-2">
+                    <button class="btn btn-info" type="button">Edit</button>
+                </a>
+
+                <a th:href="@{/delete-artist/{id}(id=${artist.id})}" onclick="return confirm('Are you sure you want to delete this artist?')">
+                    <button class="btn btn-danger" type="button">Delete</button>
+                </a>
+            </div>
+        </li>
+    </ul>
+
+</div>
