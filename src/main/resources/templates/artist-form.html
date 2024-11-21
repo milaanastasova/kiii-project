@@ -1,4 +1,3 @@
-
 <div th:fragment="body">
     <h1 th:text="${formAction == '/add-artist' ? 'Add Artist' : 'Edit Artist'}"></h1>
     <form th:action="@{${formAction}}" th:object="${artistDto}" method="post">

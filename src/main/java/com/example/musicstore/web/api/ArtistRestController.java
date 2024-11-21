@@ -35,8 +35,6 @@ public class ArtistRestController {
         return ResponseEntity.ok(artistService.findById(artistId));
     }
 
-    //TODO UPDATE METHOD
-
     @DeleteMapping("/{artist-id}")
     public ResponseEntity<Void> delete(
             @PathVariable("artist-id") String artistId

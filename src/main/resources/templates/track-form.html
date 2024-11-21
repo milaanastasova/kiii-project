@@ -1,16 +1,29 @@
 <div th:fragment="body">
+    <h1 th:text="${trackId == null ? 'Add Track' : 'Edit Track'}"></h1>
     <form method="POST" th:action="@{/album/track/{trackId}(trackId=${trackId})}">
         <div class="m-2">
             <label class="display: block" for="title">Title</label>
-            <input type="text" id="title" name="title" th:value="${track?.title}">
+            <input type="text"
+                   id="title"
+                   name="title"
+                   th:value="${track?.title}" required>
         </div>
         <div class="m-2">
             <label class="display: block" for="minutes">Minutes</label>
-            <input type="number" id="minutes" name="minutes" th:value="${track?.minutes}">
+            <input type="number"
+                   id="minutes"
+                   name="minutes"
+                   min="0"
+                   th:value="${track?.minutes}" required>
         </div>
         <div class="m-2">
             <label class="display: block" for="seconds">Seconds</label>
-            <input type="number" id="seconds" name="seconds" th:value="${track?.seconds}">
+            <input type="number"
+                   id="seconds"
+                   name="seconds"
+                   min="0"
+                   max="59"
+                   th:value="${track?.seconds}" required>
         </div>
         <input type="hidden" name="albumId" th:value="${track?.albumId}">
 

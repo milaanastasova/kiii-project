@@ -81,9 +81,6 @@ public class AlbumController {
         return "redirect:/albums";
     }
 
-    //TRACKS
-
-    // Show album details with tracks (album-tracks.html)
     @GetMapping("/album/{id}/tracks")
     public String getAlbumTracks(@PathVariable String id, Model model) {
         Album album = albumService.findById(id);
