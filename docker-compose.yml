@@ -30,6 +30,6 @@ services:
     depends_on:
       - mongodb
     environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://mila:mila@mongodb:27017/music-store-db?authSource=admin
+      - SPRING_DATA_MONGODB_URI=mongodb://mila:mila@mongodb:27017/music-store-db?authSource=admin&retryWrites=true
 volumes:
   mongo: {}

@@ -3,9 +3,11 @@ spring:
     name: music-store
   data:
     mongodb:
-      uri: mongodb://mila:mila@localhost:27017/music-store-db?authSource=admin
-      port: 27017
-      database: music-store-db
+      uri: mongodb://mila:mila@localhost:27017/music-store-db?authSource=admin&retryWrites=true
+      connection-timeout: 30000
+      socket-timeout: 30000
+      retry-writes: true
+      max-wait-time: 60000
   retry:
-    max-attempts: 5
-    delay: 2s
+    max-attmepts: 5
+    delay: 2
