@@ -6,3 +6,6 @@ spring:
       uri: mongodb://mila:mila@localhost:27017/music-store-db?authSource=admin
       port: 27017
       database: music-store-db
+  retry:
+    max-attempts: 5
+    delay: 2s
