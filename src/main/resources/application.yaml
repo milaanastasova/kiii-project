@@ -4,6 +4,7 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/music-store-db
+#      uri: mongodb://mongodb:27017/music-store-db?replicaSet=rs0
       connection-timeout: 30000
       socket-timeout: 30000
       retry-writes: true

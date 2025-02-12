@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: music-store-deployment
+  namespace: music-store
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: music-store
+  template:
+    metadata:
+      labels:
+        app: music-store
+    spec:
+      containers:
+        - name: music-store
+          image: milaanastasova/music-store:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: music-store-secret
+            - configMapRef:
+                name: music-store-config
